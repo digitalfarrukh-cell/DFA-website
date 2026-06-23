@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 // Loads the Meta (Facebook) Pixel and fires PageView automatically.
 // Returns nothing until a real Pixel ID is set in src/lib/site.ts.
 export default function MetaPixel() {
-  const id = site.metaPixelId;
+  const id: string = site.metaPixelId;
   if (!id || id === "YOUR_PIXEL_ID") return null;
 
   return (

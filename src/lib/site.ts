@@ -21,6 +21,10 @@ export const site = {
   whatsappMessage: "Hi DFA! I'd like to enroll in the Digital Marketing program.",
   email: "hello@digitalfluxxacademics.com",
 
+  // Meta (Facebook) Pixel — paste your Pixel ID from Events Manager here.
+  // Jab tak "YOUR_PIXEL_ID" hai, pixel load nahi hoga (safe).
+  metaPixelId: "1738284993831222",
+
   // Payment details (manual enrollment)
   payment: {
     name: "Hafiz Muhammad Muzammil Farrukh",

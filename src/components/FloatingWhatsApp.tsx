@@ -1,4 +1,7 @@
+"use client";
+
 import { waLink } from "@/lib/site";
+import { track } from "@/lib/fbq";
 
 export default function FloatingWhatsApp() {
   return (
@@ -7,6 +10,7 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      onClick={() => track("Contact", { content_category: "whatsapp_float" })}
       className="fixed bottom-5 right-5 z-40 grid place-items-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-black/40 hover:scale-105 transition dfa-pulse"
     >
       <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current" aria-hidden="true">

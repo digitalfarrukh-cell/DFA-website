@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
+import { track } from "@/lib/fbq";
 
 const rows = [
   { label: "Account Title", value: site.payment.name },
@@ -20,6 +21,11 @@ export default function EnrollModal() {
       const detail = (e as CustomEvent).detail as { plan?: string } | undefined;
       setPlan(detail?.plan);
       setOpen(true);
+      // Funnel step: user opened the enroll/payment modal
+      track("InitiateCheckout", {
+        content_name: detail?.plan ?? "DFA Enrollment",
+        content_category: "course",
+      });
     };
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("dfa-enroll", handler);
@@ -117,6 +123,12 @@ export default function EnrollModal() {
           href={wa}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() =>
+            track("Lead", {
+              content_name: plan ?? "DFA Enrollment",
+              content_category: "course",
+            })
+          }
           className="mt-4 flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2424] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"
         >
           Send Receipt on WhatsApp →

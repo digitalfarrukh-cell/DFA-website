@@ -52,10 +52,12 @@ export default function Popup() {
           ☀️ {site.summer.discount}
         </div>
 
-        <h3 className="mt-4 text-2xl font-bold text-white">Wait — don&apos;t miss this</h3>
+        <h3 className="mt-4 text-2xl font-bold text-white">
+          Your break = your head-start
+        </h3>
         <p className="mt-2 text-sm text-white/60 leading-relaxed">
-          {site.summer.sub} Lock your seat today and start building a real,
-          income-ready skill this summer.
+          {site.summer.sub} Lock your seat and finish these holidays with a skill
+          that actually pays.
         </p>
 
         <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">

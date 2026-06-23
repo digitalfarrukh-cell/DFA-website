@@ -25,9 +25,9 @@ export default function Hero() {
         </h1>
 
         <p className="dfa-fade-up mt-6 mx-auto max-w-2xl text-base sm:text-lg text-white/65 leading-relaxed">
-          Regular marketing is saturated. DFA gives you a proven 2-stage system —
-          first a rock-solid foundation, then the advanced strategies, CRM and
-          tracking that real professionals use to land international clients.
+          On summer break from uni, college or school? Put it to work. DFA&apos;s
+          proven 2-stage system takes you from a rock-solid foundation to advanced
+          paid ads, CRM and tracking — the skills that land real international clients.
         </p>
 
         <div className="dfa-fade-up mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">

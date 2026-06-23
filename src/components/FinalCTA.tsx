@@ -12,7 +12,7 @@ export default function FinalCTA() {
           <h2 className="mt-5 text-3xl sm:text-4xl font-bold text-white leading-tight">
             Your marketing career
             <br />
-            <span className="dfa-gradient-text">can start this summer</span>
+            <span className="dfa-gradient-text">starts this summer break</span>
           </h2>
           <p className="mt-4 mx-auto max-w-xl text-white/60">
             Seats are limited. Secure your spot and learn the complete system — from

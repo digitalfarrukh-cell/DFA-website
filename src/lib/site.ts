@@ -33,12 +33,12 @@ export const site = {
     iban: "PK71NAYA1234503190667050",
   },
 
-  // Summer campaign
+  // Summer campaign — targeting student summer vacations (uni / college / school)
   summer: {
     on: true,
-    headline: "Summer Skill Season is here ☀️",
-    sub: "Turn your vacations into a career head-start — limited summer seats open now.",
-    discount: "Summer discount live",
+    headline: "On summer break? Make it count 🎓",
+    sub: "Uni, college & school off for the summer? Don't waste these holidays — use them to learn a real, income-ready skill.",
+    discount: "Student summer offer",
   },
 
   // Proof numbers (update when real)

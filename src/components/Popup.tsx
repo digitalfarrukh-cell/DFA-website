@@ -7,7 +7,6 @@ export default function Popup() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // Show once per browser session, after 12s OR on exit-intent
     if (sessionStorage.getItem("dfa_popup_seen")) return;
 
     const trigger = () => {
@@ -33,38 +32,38 @@ export default function Popup() {
 
   return (
     <div
-      className="fixed inset-0 z-[60] grid place-items-center bg-black/70 backdrop-blur-sm px-4"
+      className="fixed inset-0 z-[60] grid place-items-center bg-slate-900/50 backdrop-blur-sm px-4"
       onClick={() => setOpen(false)}
     >
       <div
-        className="dfa-ring relative w-full max-w-md rounded-3xl bg-[#0c0c10] p-8 text-center dfa-fade-up"
+        className="dfa-ring relative w-full max-w-md rounded-3xl bg-white p-8 text-center dfa-fade-up shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={() => setOpen(false)}
           aria-label="Close"
-          className="absolute right-4 top-4 text-white/50 hover:text-white text-xl"
+          className="absolute right-4 top-4 text-slate-400 hover:text-slate-700 text-xl"
         >
           ✕
         </button>
 
-        <div className="inline-flex items-center gap-2 rounded-full bg-[#ff2424]/15 text-[#ff7a5a] text-xs font-semibold px-3 py-1">
+        <div className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-600 text-xs font-semibold px-3 py-1">
           ☀️ {site.summer.discount}
         </div>
 
-        <h3 className="mt-4 text-2xl font-bold text-white">
+        <h3 className="mt-4 text-2xl font-bold text-slate-900">
           Your break = your head-start
         </h3>
-        <p className="mt-2 text-sm text-white/60 leading-relaxed">
+        <p className="mt-2 text-sm text-slate-500 leading-relaxed">
           {site.summer.sub} Lock your seat and finish these holidays with a skill
           that actually pays.
         </p>
 
-        <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">
-          <div className="text-xs text-white/45">Foundation plan starts at</div>
-          <div className="text-3xl font-extrabold text-white">
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div className="text-xs text-slate-400">Foundation plan starts at</div>
+          <div className="text-3xl font-extrabold text-slate-900">
             {site.plans.basic.price}
-            <span className="text-base font-medium text-white/50">
+            <span className="text-base font-medium text-slate-400">
               {" "}
               {site.plans.basic.period}
             </span>
@@ -76,13 +75,13 @@ export default function Popup() {
             setOpen(false);
             window.dispatchEvent(new CustomEvent("dfa-enroll", { detail: {} }));
           }}
-          className="mt-5 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2424] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"
+          className="mt-5 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"
         >
           Claim My Summer Seat →
         </button>
         <button
           onClick={() => setOpen(false)}
-          className="mt-3 text-xs text-white/40 hover:text-white/70"
+          className="mt-3 text-xs text-slate-400 hover:text-slate-600"
         >
           No thanks, maybe later
         </button>

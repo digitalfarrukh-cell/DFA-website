@@ -42,10 +42,10 @@ export default function Curriculum() {
           <p className="text-sm font-semibold uppercase tracking-widest text-[#ff5e3a]">
             Curriculum
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
             Exactly what you&apos;ll learn
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-white/60">
+          <p className="mt-4 mx-auto max-w-2xl text-slate-500">
             Full transparency — every module is laid out below. Nothing hidden.
           </p>
         </div>
@@ -56,29 +56,29 @@ export default function Curriculum() {
               key={m.no}
               className={`rounded-2xl p-6 transition hover:-translate-y-1 ${
                 m.premium
-                  ? "border border-[#ff2424]/30 bg-gradient-to-b from-[#ff2424]/[0.07] to-transparent"
+                  ? "border border-red-200 bg-red-50/40"
                   : "dfa-card"
               }`}
             >
               <div className="flex items-center justify-between">
                 <span
                   className={`text-3xl font-extrabold ${
-                    m.premium ? "text-[#ff5e3a]/70" : "text-white/15"
+                    m.premium ? "text-[#ff5e3a]/80" : "text-slate-200"
                   }`}
                 >
                   {m.no}
                 </span>
                 {m.premium && (
-                  <span className="rounded-full bg-[#ff2424]/15 text-[#ff7a5a] text-[10px] font-bold px-2.5 py-1">
+                  <span className="rounded-full bg-red-100 text-red-600 text-[10px] font-bold px-2.5 py-1">
                     PRO
                   </span>
                 )}
               </div>
-              <h3 className="mt-3 font-semibold text-white">{m.title}</h3>
-              <ul className="mt-3 space-y-1.5 text-sm text-white/55">
+              <h3 className="mt-3 font-semibold text-slate-900">{m.title}</h3>
+              <ul className="mt-3 space-y-1.5 text-sm text-slate-500">
                 {m.points.map((p) => (
                   <li key={p} className="flex gap-2">
-                    <span className={m.premium ? "text-[#ff5e3a]" : "text-white/40"}>›</span>
+                    <span className={m.premium ? "text-[#ff5e3a]" : "text-slate-400"}>›</span>
                     {p}
                   </li>
                 ))}

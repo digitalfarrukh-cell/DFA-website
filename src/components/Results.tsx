@@ -27,10 +27,10 @@ export default function Results() {
           <p className="text-sm font-semibold uppercase tracking-widest text-[#ff5e3a]">
             Results
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
             What our students say
           </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-white/60">
+          <p className="mt-4 mx-auto max-w-2xl text-slate-500">
             Real students, real progress. No fake guarantees — just a tested system
             and your effort.
           </p>
@@ -40,21 +40,21 @@ export default function Results() {
           {testimonials.map((t) => (
             <div key={t.name} className="dfa-card rounded-2xl p-6">
               <div className="text-[#ffb800] text-sm">★★★★★</div>
-              <p className="mt-3 text-sm text-white/75 leading-relaxed">“{t.text}”</p>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">“{t.text}”</p>
               <div className="mt-4 flex items-center gap-3">
-                <span className="grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[#ff2424] to-[#ff5e3a] text-xs font-bold text-white">
+                <span className="grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[#ff2d2d] to-[#ff5e3a] text-xs font-bold text-white">
                   {t.name.charAt(0)}
                 </span>
                 <div>
-                  <div className="text-sm font-semibold text-white">{t.name}</div>
-                  <div className="text-xs text-white/45">{t.city}</div>
+                  <div className="text-sm font-semibold text-slate-900">{t.name}</div>
+                  <div className="text-xs text-slate-400">{t.city}</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="mt-8 text-center text-xs text-white/40">
+        <p className="mt-8 text-center text-xs text-slate-400">
           * Results depend on each student&apos;s effort, consistency and market
           conditions. No guaranteed-income claims.
         </p>

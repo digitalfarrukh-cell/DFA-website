@@ -21,7 +21,6 @@ export default function EnrollModal() {
       const detail = (e as CustomEvent).detail as { plan?: string } | undefined;
       setPlan(detail?.plan);
       setOpen(true);
-      // Funnel step: user opened the enroll/payment modal
       track("InitiateCheckout", {
         content_name: detail?.plan ?? "DFA Enrollment",
         content_category: "course",
@@ -62,47 +61,47 @@ export default function EnrollModal() {
 
   return (
     <div
-      className="fixed inset-0 z-[70] grid place-items-center bg-black/75 backdrop-blur-sm px-4 py-8 overflow-y-auto"
+      className="fixed inset-0 z-[70] grid place-items-center bg-slate-900/55 backdrop-blur-sm px-4 py-8 overflow-y-auto"
       onClick={() => setOpen(false)}
     >
       <div
-        className="dfa-ring relative w-full max-w-md rounded-3xl bg-[#0c0c10] p-7 sm:p-8 dfa-fade-up"
+        className="dfa-ring relative w-full max-w-md rounded-3xl bg-white p-7 sm:p-8 dfa-fade-up shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={() => setOpen(false)}
           aria-label="Close"
-          className="absolute right-4 top-4 text-white/50 hover:text-white text-xl"
+          className="absolute right-4 top-4 text-slate-400 hover:text-slate-700 text-xl"
         >
           ✕
         </button>
 
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#ff2424]/15 text-[#ff7a5a] text-xs font-semibold px-3 py-1">
+          <div className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-600 text-xs font-semibold px-3 py-1">
             Complete your enrollment
           </div>
-          <h3 className="mt-3 text-2xl font-bold text-white">
+          <h3 className="mt-3 text-2xl font-bold text-slate-900">
             {plan ? `${plan} Plan` : "Enroll Now"}
           </h3>
-          <p className="mt-1.5 text-sm text-white/55">
+          <p className="mt-1.5 text-sm text-slate-500">
             Send the fee to the account below, then confirm on WhatsApp.
           </p>
         </div>
 
         {/* Payment details */}
-        <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-4">
-          <div className="divide-y divide-white/8">
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div className="divide-y divide-slate-200">
             {rows.map((r) => (
               <div key={r.label} className="flex items-center justify-between gap-3 py-2.5">
                 <div className="min-w-0">
-                  <div className="text-[10px] uppercase tracking-wider text-white/40">
+                  <div className="text-[10px] uppercase tracking-wider text-slate-400">
                     {r.label}
                   </div>
-                  <div className="text-sm text-white/90 truncate">{r.value}</div>
+                  <div className="text-sm text-slate-800 truncate">{r.value}</div>
                 </div>
                 <button
                   onClick={() => copy(r.value)}
-                  className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:bg-white/10 transition"
+                  className="shrink-0 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-100 transition"
                 >
                   {copied === r.value ? "Copied ✓" : "Copy"}
                 </button>
@@ -112,10 +111,10 @@ export default function EnrollModal() {
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-4 rounded-2xl border border-[#ffb800]/30 bg-[#ffb800]/10 p-3.5 text-center">
-          <p className="text-xs text-[#ffd57a] leading-relaxed">
+        <div className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-3.5 text-center">
+          <p className="text-xs text-amber-700 leading-relaxed">
             ⚠️ Your enrollment is confirmed only after you{" "}
-            <span className="font-semibold text-white">send the payment receipt on WhatsApp</span>.
+            <span className="font-semibold text-amber-800">send the payment receipt on WhatsApp</span>.
           </p>
         </div>
 
@@ -129,11 +128,11 @@ export default function EnrollModal() {
               content_category: "course",
             })
           }
-          className="mt-4 flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2424] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"
+          className="mt-4 flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"
         >
           Send Receipt on WhatsApp →
         </a>
-        <p className="mt-3 text-center text-[11px] text-white/40">
+        <p className="mt-3 text-center text-[11px] text-slate-400">
           Having trouble? Just message us — we&apos;ll guide you through it.
         </p>
       </div>

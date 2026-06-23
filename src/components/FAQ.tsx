@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "What's the difference between Foundation and Pro Career?",
-    a: "Foundation (Rs. 3,499/month) covers core digital marketing and basic paid ads. Pro Career (Rs. 19,999, one-time) includes everything plus advanced ads, CRM, advanced tracking, funnels, mentorship — and the high-ticket client acquisition system.",
+    a: "Foundation (Rs. 3,499, one-time) covers core digital marketing and basic paid ads. Pro Career (Rs. 19,999, one-time) includes everything plus advanced ads, CRM, advanced tracking, funnels, mentorship — and the high-ticket client acquisition system.",
   },
   {
     q: "Are classes live or recorded?",
@@ -37,7 +37,7 @@ export default function FAQ() {
       <div className="mx-auto max-w-3xl px-5">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#ff5e3a]">FAQ</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900">
             Frequently asked questions
           </h2>
         </div>
@@ -51,7 +51,7 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                 >
-                  <span className="font-medium text-white">{f.q}</span>
+                  <span className="font-medium text-slate-900">{f.q}</span>
                   <span
                     className={`text-[#ff5e3a] text-xl transition-transform ${
                       isOpen ? "rotate-45" : ""
@@ -61,7 +61,7 @@ export default function FAQ() {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="px-6 pb-5 -mt-1 text-sm text-white/60 leading-relaxed">{f.a}</p>
+                  <p className="px-6 pb-5 -mt-1 text-sm text-slate-500 leading-relaxed">{f.a}</p>
                 )}
               </div>
             );

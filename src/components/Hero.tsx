@@ -27,7 +27,22 @@ export default function Hero() {
           <p className="dfa-fade-up mt-5 max-w-xl text-base sm:text-lg text-slate-500 leading-relaxed">
             On summer break from uni, college or school? Put it to work. DFA&apos;s
             proven 2-stage system takes you from a solid foundation to advanced paid
-            ads, CRM and tracking — the skills that land real international clients.
+            ads, CRM and tracking.
+          </p>
+
+          <div className="dfa-fade-up mt-5 flex items-start gap-3 rounded-2xl border border-red-100 bg-red-50/60 px-4 py-3 max-w-xl">
+            <span className="text-xl leading-none">💰</span>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              We teach you the complete, proven path to{" "}
+              <span className="font-semibold text-slate-900">earn $1000+ a month</span> —
+              through <span className="font-semibold text-slate-900">direct client hunting</span>{" "}
+              and top global freelance platforms like{" "}
+              <span className="font-semibold text-slate-900">Upwork &amp; Fiverr</span>.
+            </p>
+          </div>
+          <p className="dfa-fade-up mt-2 text-xs text-slate-400 max-w-xl">
+            *Earnings depend on your skill, effort and consistency — we teach the
+            system, you put in the work.
           </p>
 
           <div className="dfa-fade-up mt-8 flex flex-col sm:flex-row items-center gap-3">

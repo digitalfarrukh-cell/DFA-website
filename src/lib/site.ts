@@ -45,7 +45,6 @@ export const site = {
   stats: {
     students: "500+",
     rating: "4.9/5",
-    countries: "10+",
     hours: "40+",
   },
 

@@ -63,7 +63,7 @@ export default function Hero() {
             <div className="h-8 w-px bg-slate-200" />
             <Stat value={site.stats.rating} label="Avg. Rating" />
             <div className="h-8 w-px bg-slate-200" />
-            <Stat value={site.stats.countries} label="Countries" />
+            <Stat value="🇵🇰" label="Made for Pakistan" />
           </div>
         </div>
 

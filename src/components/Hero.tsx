@@ -31,18 +31,19 @@ export default function Hero() {
           </p>
 
           <div className="dfa-fade-up mt-5 flex items-start gap-3 rounded-2xl border border-red-100 bg-red-50/60 px-4 py-3 max-w-xl">
-            <span className="text-xl leading-none">💰</span>
+            <span className="text-xl leading-none">💼</span>
             <p className="text-sm text-slate-700 leading-relaxed">
-              We teach you the complete, proven path to{" "}
-              <span className="font-semibold text-slate-900">earn $1000+ a month</span> —
-              through <span className="font-semibold text-slate-900">direct client hunting</span>{" "}
-              and top global freelance platforms like{" "}
+              Learn the complete, proven path to{" "}
+              <span className="font-semibold text-slate-900">win international clients</span>{" "}
+              and build a real freelancing income — through{" "}
+              <span className="font-semibold text-slate-900">direct client hunting</span>{" "}
+              and top global platforms like{" "}
               <span className="font-semibold text-slate-900">Upwork &amp; Fiverr</span>.
             </p>
           </div>
           <p className="dfa-fade-up mt-2 text-xs text-slate-400 max-w-xl">
-            *Earnings depend on your skill, effort and consistency — we teach the
-            system, you put in the work.
+            *We teach the skills and system — your results depend on your effort
+            and consistency.
           </p>
 
           <div className="dfa-fade-up mt-8 flex flex-col sm:flex-row items-center gap-3">
@@ -90,8 +91,8 @@ export default function Hero() {
                 <div className="text-2xl font-bold text-violet-700">12</div>
               </div>
               <div className="rounded-2xl bg-red-50 p-4">
-                <div className="text-xs text-red-500">This month</div>
-                <div className="text-2xl font-bold text-red-600">$2,400</div>
+                <div className="text-xs text-red-500">New leads</div>
+                <div className="text-2xl font-bold text-red-600">38</div>
               </div>
             </div>
           </div>

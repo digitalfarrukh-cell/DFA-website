@@ -23,7 +23,7 @@ export const site = {
 
   // Meta (Facebook) Pixel — paste your Pixel ID from Events Manager here.
   // Jab tak "YOUR_PIXEL_ID" hai, pixel load nahi hoga (safe).
-  metaPixelId: "1738284993831222",
+  metaPixelId: "1658239098793863",
 
   // Payment details (manual enrollment)
   payment: {

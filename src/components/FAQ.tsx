@@ -8,8 +8,8 @@ const faqs = [
     a: "Not at all. The program starts from zero — the Foundation builds your base, then we take you to advanced level. It's perfect for complete beginners.",
   },
   {
-    q: "What's the difference between Foundation and Pro Career?",
-    a: "Foundation (Rs. 3,499, one-time) covers core digital marketing and basic paid ads. Pro Career (Rs. 19,999, one-time) includes everything plus advanced ads, CRM, advanced tracking, funnels, mentorship — and the high-ticket client acquisition system.",
+    q: "What's the difference between the three plans?",
+    a: "Foundation (Rs. 3,499) covers core digital marketing and basic paid ads. Freelancer (Rs. 9,999) adds deeper ads, funnels, and a complete freelancing + client-hunting setup to make you income-ready. Pro Career (Rs. 24,999) includes everything plus advanced ads, CRM, advanced tracking, scaling systems, 1-on-1 mentorship — and the high-ticket international client acquisition system.",
   },
   {
     q: "Are classes live or recorded?",

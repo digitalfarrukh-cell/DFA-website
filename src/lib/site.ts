@@ -51,7 +51,7 @@ export const site = {
   // Optional add-on
   communityAddon: "Rs. 799 / month",
 
-  // Two pricing plans
+  // Three pricing plans
   plans: {
     basic: {
       name: "Foundation",
@@ -68,21 +68,41 @@ export const site = {
         "Lead generation basics",
         "Templates, checklists & resources",
         "Doubt support",
-        "Completion certificate",
       ],
       // Shown as a separate note (not included free)
       addonNote: "Private community access available as add-on",
     },
+    mid: {
+      name: "Freelancer",
+      tag: "Most popular",
+      price: "Rs. 9,999",
+      period: "one-time",
+      note: "One-time payment • 6–8 week program",
+      cta: "Become a Freelancer",
+      features: [
+        "Everything in Foundation, plus:",
+        "Deeper Meta Ads — optimization, retargeting & audiences",
+        "Pixel & conversions setup + Google Ads basics",
+        "Landing pages & lead funnels",
+        "Freelancing setup — Upwork & Fiverr profiles that win",
+        "Winning proposals & direct client outreach",
+        "Portfolio building (even with zero experience)",
+        "1 live practice campaign",
+        "Client reporting & analytics basics",
+        "Weekly group Q&A support",
+        "Proposal & reporting templates",
+      ],
+      addonNote: "Private community access available as add-on",
+    },
     premium: {
       name: "Pro Career",
-      tag: "Most popular",
-      price: "Rs. 19,999",
+      tag: "Go all-in",
+      price: "Rs. 24,999",
       period: "one-time",
       note: "Complete program • lifetime access",
       cta: "Go Pro",
       features: [
-        "Everything in Foundation, plus:",
-        "Live + recorded classes",
+        "Everything in Freelancer, plus:",
         "Advanced Paid Ads & Growth Hacking",
         "CRM mastery — setup, pipelines & automation",
         "Advanced tracking & analytics (pixels, attribution, dashboards)",

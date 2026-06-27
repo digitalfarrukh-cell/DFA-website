@@ -101,8 +101,8 @@ export default function Hero() {
               ★
             </span>
             <div className="text-xs">
-              <div className="font-semibold text-slate-800">Certificate</div>
-              <div className="text-slate-400">on completion</div>
+              <div className="font-semibold text-slate-800">Live + recorded</div>
+              <div className="text-slate-400">classes</div>
             </div>
           </div>
         </div>

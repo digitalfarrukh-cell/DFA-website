@@ -30,6 +30,10 @@ export const metadata: Metadata = {
       "Digital Marketing seekho aur Advanced Paid Ads se international earning shuru karo.",
     type: "website",
   },
+  // Meta (Facebook) Business — domain verification tag
+  other: {
+    "facebook-domain-verification": "n4l96pmjvy2vqwv4tm2hue8jmh6sj0",
+  },
 };
 
 export default function RootLayout({

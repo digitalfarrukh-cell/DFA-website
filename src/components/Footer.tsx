@@ -1,4 +1,13 @@
+import Link from "next/link";
 import { site, waLink } from "@/lib/site";
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/refund", label: "Refund Policy" },
+  { href: "/disclaimer", label: "Earnings Disclaimer" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Footer() {
   return (
@@ -31,6 +40,15 @@ export default function Footer() {
               Email
             </a>
           </div>
+        </div>
+
+        {/* Legal / policy links — required for ad-platform compliance */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
+          {legalLinks.map((l) => (
+            <Link key={l.href} href={l.href} className="hover:text-slate-900">
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         <div className="mt-8 pt-6 border-t border-slate-200 text-center text-xs text-slate-400">

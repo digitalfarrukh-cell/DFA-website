@@ -97,3 +97,30 @@ body {
   66% { transform: translate(-20px, 20px) scale(0.95); }
 }
 .dfa-blob { animation: dfa-blob 14s ease-in-out infinite; }
+
+/* Legal / policy pages typography */
+.dfa-legal h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.dfa-legal h3 {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+.dfa-legal p { margin-top: 0.75rem; }
+.dfa-legal ul {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.dfa-legal ul li { margin-top: 0.4rem; }
+.dfa-legal a {
+  color: #ff2d2d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.dfa-legal strong { color: #0f172a; }

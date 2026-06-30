@@ -77,6 +77,7 @@ export const site = {
         "Shopify & e-commerce basics",
         "Templates, checklists & resources",
         "Doubt support",
+        "Completion certificate",
       ],
       // Shown as a separate note (not included free)
       addonNote: "Private community access available as add-on",

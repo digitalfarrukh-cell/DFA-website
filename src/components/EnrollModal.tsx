@@ -11,6 +11,11 @@ const rows = [
   { label: "IBAN", value: site.payment.iban },
 ];
 
+// Map each plan name to its numeric price so Meta events can carry value + currency.
+const planValue: Record<string, number> = Object.fromEntries(
+  Object.values(site.plans).map((p) => [p.name, Number(p.price.replace(/[^0-9]/g, "")) || 0])
+);
+
 export default function EnrollModal() {
   const [open, setOpen] = useState(false);
   const [plan, setPlan] = useState<string | undefined>();
@@ -24,6 +29,8 @@ export default function EnrollModal() {
       track("InitiateCheckout", {
         content_name: detail?.plan ?? "DFA Enrollment",
         content_category: "course",
+        currency: "PKR",
+        value: detail?.plan ? planValue[detail.plan] ?? 0 : 0,
       });
     };
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -126,6 +133,8 @@ export default function EnrollModal() {
             track("Lead", {
               content_name: plan ?? "DFA Enrollment",
               content_category: "course",
+              currency: "PKR",
+              value: plan ? planValue[plan] ?? 0 : 0,
             })
           }
           className="mt-4 flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition"

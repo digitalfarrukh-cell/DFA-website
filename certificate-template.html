@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DFA — Certificate Generator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #e9e9ef;
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #1e1b2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }
+
+  /* ---------- Controls (hidden when printing) ---------- */
+  .controls {
+    width: 100%;
+    max-width: 1123px;
+    background: #fff;
+    border: 1px solid #d8d8e0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    gap: 14px;
+    align-items: end;
+  }
+  .controls h1 { grid-column: 1 / -1; margin: 0 0 4px; font-size: 17px; }
+  .controls label { display: block; font-size: 11px; font-weight: 600; color: #666; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .5px; }
+  .controls input {
+    width: 100%; padding: 9px 11px; border: 1px solid #ccc; border-radius: 8px;
+    font-family: inherit; font-size: 14px;
+  }
+  .controls button {
+    padding: 10px 20px; border: 0; border-radius: 999px; cursor: pointer;
+    background: linear-gradient(90deg,#ff2d2d,#ff5e3a); color: #fff; font-weight: 700; font-size: 14px;
+    white-space: nowrap;
+  }
+  .hint { grid-column: 1 / -1; font-size: 12px; color: #888; margin: 2px 0 0; }
+
+  /* ---------- Certificate ---------- */
+  .cert {
+    width: 1123px; height: 794px;
+    background:
+      radial-gradient(120% 120% at 0% 0%, #fff5ec 0%, #fffdf7 55%);
+    position: relative;
+    box-shadow: 0 18px 50px rgba(0,0,0,.18);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow: hidden;
+  }
+  .border-outer { position:absolute; inset:28px; border:3px solid #0f1e3d; }
+  .border-inner { position:absolute; inset:40px; border:1.5px solid #d4af37; }
+  .corner { position:absolute; width:40px; height:40px; border:2px solid #d4af37; }
+  .c-tl { top:40px; left:40px; border-right:0; border-bottom:0; border-radius:12px 0 0 0; }
+  .c-tr { top:40px; right:40px; border-left:0; border-bottom:0; border-radius:0 12px 0 0; }
+  .c-bl { bottom:40px; left:40px; border-right:0; border-top:0; border-radius:0 0 0 12px; }
+  .c-br { bottom:40px; right:40px; border-left:0; border-top:0; border-radius:0 0 12px 0; }
+
+  .inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:60px; }
+  .brand { font-family:'Montserrat',sans-serif; font-weight:700; font-size:40px; letter-spacing:6px; color:#0f1e3d; }
+  .brand-sub { font-family:'Montserrat',sans-serif; font-size:13px; letter-spacing:7px; color:#ff5e3a; margin-top:4px; }
+  .rule { width:180px; height:1.5px; background:#d4af37; margin:14px 0 0; }
+
+  .title { font-family:'Montserrat',sans-serif; font-weight:700; font-size:42px; letter-spacing:10px; color:#0f1e3d; margin-top:34px; }
+  .title-sub { font-family:'Montserrat',sans-serif; font-size:16px; letter-spacing:12px; color:#8a6d18; margin-top:8px; }
+  .accent { width:110px; height:4px; border-radius:2px; background:linear-gradient(90deg,#ff2d2d,#ff5e3a); margin-top:14px; }
+
+  .presented { font-style:italic; font-size:21px; color:#555; margin-top:34px; }
+  .name { font-size:62px; font-style:italic; color:#0f1e3d; line-height:1.1; margin-top:6px; min-width:400px; }
+  .name-rule { width:420px; height:1.5px; background:#d4af37; margin-top:6px; }
+  .body1 { font-size:20px; color:#444; margin-top:26px; }
+  .body2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:22px; color:#ff2d2d; margin-top:8px; }
+  .body3 { font-size:17px; color:#666; margin-top:10px; }
+
+  /* seal */
+  .seal { position:absolute; left:50%; transform:translateX(-50%); bottom:96px; width:92px; height:92px; }
+  .seal .disc { position:absolute; inset:0; border-radius:50%;
+    background:linear-gradient(135deg,#f3d27a,#d4af37 50%,#b8860b); border:1.5px solid #8a6d18;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; }
+  .seal .ring { position:absolute; inset:8px; border:1.5px solid rgba(255,253,247,.85); border-radius:50%; }
+  .seal .star { color:#fffdf7; font-size:30px; line-height:1; margin-top:6px; }
+  .seal .ctxt { font-family:'Montserrat',sans-serif; font-weight:700; font-size:8px; letter-spacing:2px; color:#5a4708; margin-top:2px; }
+
+  /* signature + date */
+  .sigrow { position:absolute; bottom:80px; width:100%; display:flex; justify-content:space-between; padding:0 130px; }
+  .block { width:200px; text-align:center; }
+  .sigline { border-top:1.2px solid #0f1e3d; padding-top:6px; }
+  .signame { font-size:24px; font-style:italic; color:#0f1e3d; margin-bottom:4px; }
+  .datename { font-size:20px; color:#0f1e3d; margin-bottom:4px; font-family:'Montserrat',sans-serif; }
+  .blabel { font-family:'Montserrat',sans-serif; font-size:12px; color:#555; }
+  .footer { position:absolute; bottom:42px; width:100%; text-align:center; font-family:'Montserrat',sans-serif; font-size:11px; letter-spacing:2px; color:#999; }
+
+  /* ---------- Print ---------- */
+  @page { size: A4 landscape; margin: 0; }
+  @media print {
+    body { background:#fff; padding:0; }
+    .controls { display:none !important; }
+    .cert { box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="controls">
+    <h1>🎓 DFA Certificate Generator</h1>
+    <div>
+      <label>Student Name</label>
+      <input id="f-name" value="Ali Raza" oninput="sync()" />
+    </div>
+    <div>
+      <label>Program</label>
+      <input id="f-prog" value="Foundation — Digital Marketing Program" oninput="sync()" />
+    </div>
+    <div>
+      <label>Date of Completion</label>
+      <input id="f-date" value="01 July 2026" oninput="sync()" />
+    </div>
+    <div>
+      <label>Certificate ID</label>
+      <input id="f-id" value="DFA-2026-0001" oninput="sync()" />
+    </div>
+    <button onclick="window.print()">Print / Save as PDF</button>
+    <p class="hint">Naam/program/date/ID upar bharo, phir "Print / Save as PDF" dabao → printer mein "Save as PDF" choose karo (A4 landscape).</p>
+  </div>
+
+  <div class="cert">
+    <div class="border-outer"></div>
+    <div class="border-inner"></div>
+    <div class="corner c-tl"></div><div class="corner c-tr"></div>
+    <div class="corner c-bl"></div><div class="corner c-br"></div>
+
+    <div class="inner">
+      <div class="brand">DFA</div>
+      <div class="brand-sub">DIGITAL FLUXX ACADEMICS</div>
+      <div class="rule"></div>
+
+      <div class="title">CERTIFICATE</div>
+      <div class="title-sub">OF COMPLETION</div>
+      <div class="accent"></div>
+
+      <div class="presented">This certificate is proudly presented to</div>
+      <div class="name" id="o-name">Ali Raza</div>
+      <div class="name-rule"></div>
+
+      <div class="body1">for successfully completing the</div>
+      <div class="body2" id="o-prog">Foundation — Digital Marketing Program</div>
+      <div class="body3">at Digital Fluxx Academics — Pakistan's practical digital marketing academy.</div>
+    </div>
+
+    <div class="seal">
+      <div class="disc">
+        <div class="ring"></div>
+        <div class="star">★</div>
+        <div class="ctxt">CERTIFIED</div>
+      </div>
+    </div>
+
+    <div class="sigrow">
+      <div class="block">
+        <div class="datename" id="o-date">01 July 2026</div>
+        <div class="sigline blabel">Date of Completion</div>
+      </div>
+      <div class="block">
+        <div class="signame">Muzammil Farrukh</div>
+        <div class="sigline blabel">Founder &amp; Lead Instructor</div>
+      </div>
+    </div>
+
+    <div class="footer" id="o-foot">digitalfluxxacademics.com &nbsp;•&nbsp; Certificate ID: DFA-2026-0001</div>
+  </div>
+
+<script>
+  function sync() {
+    document.getElementById('o-name').textContent = document.getElementById('f-name').value || 'Student Name';
+    document.getElementById('o-prog').textContent = document.getElementById('f-prog').value;
+    document.getElementById('o-date').textContent = document.getElementById('f-date').value;
+    document.getElementById('o-foot').innerHTML =
+      'digitalfluxxacademics.com &nbsp;•&nbsp; Certificate ID: ' + (document.getElementById('f-id').value || '');
+  }
+</script>
+</body>
+</html>

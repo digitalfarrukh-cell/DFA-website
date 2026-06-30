@@ -31,7 +31,7 @@ export const site = {
   // Microsoft Clarity — free heatmaps + session recordings.
   // Sign up at clarity.microsoft.com, create a project, paste the Project ID here.
   // Jab tak khaali "" hai, Clarity load nahi hoga (safe).
-  clarityId: "",
+  clarityId: "xfafordfh8",
 
   // Payment details (manual enrollment)
   payment: {

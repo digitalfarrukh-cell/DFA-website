@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { site, waConsultLink } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
 
 export default function Hero() {
@@ -57,6 +57,18 @@ export default function Hero() {
               View Plans &amp; Pricing
             </a>
           </div>
+
+          <p className="dfa-fade-up mt-4 text-sm text-slate-500">
+            Not sure where to start?{" "}
+            <a
+              href={waConsultLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-green-600 underline underline-offset-4 hover:text-green-700"
+            >
+              💬 Get free guidance on WhatsApp
+            </a>
+          </p>
 
           <div className="dfa-fade-up mt-10 flex items-center gap-6 sm:gap-8 flex-wrap">
             <Stat value={site.stats.students} label="Students" />

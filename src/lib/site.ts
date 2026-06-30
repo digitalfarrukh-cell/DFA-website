@@ -19,11 +19,19 @@ export const site = {
   // Contact / enrollment
   whatsapp: "+923190667050",
   whatsappMessage: "Hi DFA! I'd like to enroll in the Digital Marketing program.",
+  // Soft / low-friction CTA — free guidance before paying
+  whatsappConsultMessage:
+    "Hi DFA! I'm interested in the Digital Marketing course. Before enrolling, can I get some free guidance about the plans and what suits me?",
   email: "hello@digitalfluxxacademics.com",
 
   // Meta (Facebook) Pixel — paste your Pixel ID from Events Manager here.
   // Jab tak "YOUR_PIXEL_ID" hai, pixel load nahi hoga (safe).
   metaPixelId: "1658239098793863",
+
+  // Microsoft Clarity — free heatmaps + session recordings.
+  // Sign up at clarity.microsoft.com, create a project, paste the Project ID here.
+  // Jab tak khaali "" hai, Clarity load nahi hoga (safe).
+  clarityId: "",
 
   // Payment details (manual enrollment)
   payment: {
@@ -133,7 +141,10 @@ export const site = {
   },
 } as const;
 
-// WhatsApp link helper
-export const waLink = `https://wa.me/${site.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-  site.whatsappMessage
+// WhatsApp link helpers
+const waNumber = site.whatsapp.replace(/[^0-9]/g, "");
+export const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+// Soft consultation link (free guidance before enrolling)
+export const waConsultLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
+  site.whatsappConsultMessage
 )}`;

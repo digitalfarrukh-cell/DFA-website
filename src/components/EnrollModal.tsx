@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/lib/site";
+import { site, waConsultLink } from "@/lib/site";
 import { track } from "@/lib/fbq";
 
 const rows = [
@@ -141,8 +141,28 @@ export default function EnrollModal() {
         >
           Send Receipt on WhatsApp →
         </a>
+        {/* Soft, low-friction option — chat first, pay later */}
+        <div className="mt-5 flex items-center gap-3">
+          <span className="h-px flex-1 bg-slate-200" />
+          <span className="text-[11px] uppercase tracking-wider text-slate-400">or</span>
+          <span className="h-px flex-1 bg-slate-200" />
+        </div>
+        <a
+          href={waConsultLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() =>
+            track("Contact", {
+              content_name: plan ?? "DFA Consultation",
+              content_category: "whatsapp_consult",
+            })
+          }
+          className="mt-4 flex items-center justify-center gap-2 rounded-full border border-green-500 bg-green-50 px-6 py-3 font-semibold text-green-700 hover:bg-green-100 transition"
+        >
+          💬 Not ready to pay? Get free guidance on WhatsApp
+        </a>
         <p className="mt-3 text-center text-[11px] text-slate-400">
-          Having trouble? Just message us — we&apos;ll guide you through it.
+          Ask anything before enrolling — we&apos;ll help you pick the right plan.
         </p>
       </div>
     </div>

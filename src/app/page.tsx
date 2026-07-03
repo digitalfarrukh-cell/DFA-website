@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import RealityCheck from "@/components/RealityCheck";
 import Curriculum from "@/components/Curriculum";
 import ClassFormat from "@/components/ClassFormat";
 import Pricing from "@/components/Pricing";
@@ -20,7 +19,6 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <RealityCheck />
         <Curriculum />
         <ClassFormat />
         <Pricing />

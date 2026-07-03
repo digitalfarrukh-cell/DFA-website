@@ -60,12 +60,18 @@ export default function Popup() {
         </p>
 
         <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <div className="text-xs text-slate-400">Foundation plan starts at</div>
-          <div className="text-3xl font-extrabold text-slate-900">
-            {site.plans.basic.price}
+          <div className="text-xs text-slate-400">
+            {site.plans.mid.name} program — summer price
+          </div>
+          <div className="mt-0.5 flex items-center justify-center gap-2">
+            <span className="text-lg font-semibold text-slate-400 line-through">
+              {site.plans.mid.originalPrice}
+            </span>
+            <span className="text-3xl font-extrabold text-slate-900">
+              {site.plans.mid.price}
+            </span>
             <span className="text-base font-medium text-slate-400">
-              {" "}
-              {site.plans.basic.period}
+              {site.plans.mid.period}
             </span>
           </div>
         </div>

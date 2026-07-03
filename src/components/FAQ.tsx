@@ -5,23 +5,23 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Do I need prior experience?",
-    a: "Not at all. The program starts from zero — the Foundation builds your base, then we take you to advanced level. It's perfect for complete beginners.",
+    a: "Not at all. The program starts from zero and builds your base before taking you to an advanced, income-ready level. It's perfect for complete beginners.",
   },
   {
-    q: "What's the difference between the three plans?",
-    a: "Foundation (Rs. 3,499) covers core digital marketing, basic paid ads and Shopify e-commerce basics. Freelancer (Rs. 9,999) adds deeper ads, Shopify store setup, funnels, and a complete freelancing + client-hunting setup to make you income-ready. Pro Career (Rs. 29,999) includes everything plus advanced ads, Snapchat marketing with full setup, advanced Shopify scaling, CRM, advanced tracking, 1-on-1 mentorship — and the high-ticket international client acquisition system.",
+    q: "What's included in the Freelancer program?",
+    a: "Everything you need to become income-ready: core digital marketing, deeper Meta & Google paid ads with optimization and retargeting, Shopify store setup, landing pages & lead funnels, a complete freelancing setup (winning Upwork & Fiverr profiles), direct client-hunting, a live practice campaign, client reporting, weekly group Q&A support, and all templates — for a one-time summer price of Rs. 9,999 (originally Rs. 14,999).",
   },
   {
     q: "Are classes live or recorded?",
-    a: "Both. Attend live, and get the recording of every class with lifetime access (Pro). Missed a session? No problem.",
+    a: "Both. Attend live, and get the recording of every class so you never miss a session.",
   },
   {
     q: "Can this really lead to earning?",
     a: "The program gives you the skills and roadmap our students use to reach international clients. Your earnings depend on your consistency and effort — we don't make fake guaranteed-income claims.",
   },
   {
-    q: "What is the high-ticket client opportunity?",
-    a: "Top-performing Pro Career students get pitched to real high-ticket international clients through our network — a genuine chance to start earning with serious clients.",
+    q: "How does the international client opportunity work?",
+    a: "Top-performing students get pitched to real international clients through our network — a genuine chance to start earning with serious clients.",
   },
   {
     q: "How do I pay?",

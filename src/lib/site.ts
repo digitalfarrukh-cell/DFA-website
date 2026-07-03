@@ -49,6 +49,49 @@ export const site = {
     discount: "Student summer offer",
   },
 
+  // ============================================================
+  // Enrollment funnel — screening questions.
+  // Jab koi "Enroll" pe click kare to yeh questions ek-ek kar ke
+  // aate hain. Har question upar, choices neeche (tap-only).
+  // Yahan se add / edit / remove karo — modal khud update ho jayega.
+  // ============================================================
+  screening: [
+    {
+      id: "status",
+      q: "Aap abhi kya kar rahe hain?",
+      options: ["🎓 Student", "🎓 Graduate", "💼 Job holder", "🧑‍💻 Pehle se freelancing", "🔍 Kuch aur"],
+    },
+    {
+      id: "experience",
+      q: "Digital marketing ka experience kitna hai?",
+      options: [
+        "🌱 Bilkul newbie hoon",
+        "📖 Thodi si knowledge hai",
+        "🚀 Already kar raha hoon, improve karna hai",
+      ],
+    },
+    {
+      id: "goal",
+      q: "Aapka main goal kya hai?",
+      options: [
+        "💰 Freelancing (Fiverr / Upwork)",
+        "🤝 Clients / apni services bechna",
+        "🏢 Achi job lena",
+        "🛒 Apna business / Shopify store",
+      ],
+    },
+    {
+      id: "time",
+      q: "Weekly kitna time de sakte ho seekhne ko?",
+      options: ["⏱️ 5 ghante se kam", "⏱️ 5–10 ghante", "🔥 10+ ghante"],
+    },
+    {
+      id: "start",
+      q: "Course kab start karna chahte ho?",
+      options: ["🔥 Main abhi ready hoon", "📅 Is hafte", "👀 Filhaal sirf explore kar raha hoon"],
+    },
+  ],
+
   // Proof numbers (update when real)
   stats: {
     students: "500+",
@@ -84,8 +127,9 @@ export const site = {
     },
     mid: {
       name: "Freelancer",
-      tag: "Most popular",
+      tag: "Summer offer",
       price: "Rs. 9,999",
+      originalPrice: "Rs. 14,999",
       period: "one-time",
       note: "One-time payment • 6–8 week program",
       cta: "Become a Freelancer",

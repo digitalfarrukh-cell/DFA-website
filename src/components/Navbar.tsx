@@ -5,8 +5,8 @@ import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
 
 const links = [
-  { href: "#system", label: "System" },
   { href: "#curriculum", label: "Curriculum" },
+  { href: "#schedule", label: "Schedule" },
   { href: "#pricing", label: "Pricing" },
   { href: "#team", label: "Team" },
   { href: "#instructor", label: "Instructor" },

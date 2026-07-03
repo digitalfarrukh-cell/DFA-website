@@ -1,10 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import RealityCheck from "@/components/RealityCheck";
-import TwoStageSystem from "@/components/TwoStageSystem";
 import Curriculum from "@/components/Curriculum";
+import ClassFormat from "@/components/ClassFormat";
 import Pricing from "@/components/Pricing";
-import PaymentInfo from "@/components/PaymentInfo";
 import Team from "@/components/Team";
 import Instructor from "@/components/Instructor";
 import Results from "@/components/Results";
@@ -22,10 +21,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <RealityCheck />
-        <TwoStageSystem />
         <Curriculum />
+        <ClassFormat />
         <Pricing />
-        <PaymentInfo />
         <Team />
         <Instructor />
         <Results />

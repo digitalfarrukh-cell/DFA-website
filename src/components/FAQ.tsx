@@ -12,6 +12,10 @@ const faqs = [
     a: "Everything you need to become income-ready: core digital marketing, deeper Meta & Google paid ads with optimization and retargeting, Shopify store setup, landing pages & lead funnels, a complete freelancing setup (winning Upwork & Fiverr profiles), direct client-hunting, a live practice campaign, client reporting, weekly group Q&A support, and all templates — for a one-time summer price of Rs. 9,999 (originally Rs. 14,999).",
   },
   {
+    q: "How often are the classes?",
+    a: "3 classes every week, about 1.5 hours each — a steady, doable pace that fits around study or work. Your very first class is a full introduction and orientation so you know exactly how the program runs.",
+  },
+  {
     q: "Are classes live or recorded?",
     a: "Both. Attend live, and get the recording of every class so you never miss a session.",
   },

@@ -99,6 +99,15 @@ export const site = {
     hours: "40+",
   },
 
+  // Weekly class format / schedule
+  classes: {
+    perWeek: 3,
+    duration: "1.5 hours",
+    firstClass:
+      "Your very first class is a full introduction & orientation — you'll know exactly how the program works before we dive in.",
+    recordings: "Live classes + recording of every session — miss one, catch up anytime.",
+  },
+
   // Optional add-on
   communityAddon: "Rs. 799 / month",
 

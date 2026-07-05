@@ -316,6 +316,38 @@ export default function EnrollModal() {
               </div>
             </div>
 
+            {!uploaded && (
+              <div className="mt-5 rounded-2xl border border-green-300 bg-green-50 p-4 text-center">
+                <p className="text-sm font-semibold text-slate-800">
+                  👥 Priority group join karo — hum yahan aapko personally guide karenge
+                </p>
+                <a
+                  href={site.enrollment.leadGroup}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("Contact", {
+                      content_name: PLAN.name,
+                      content_category: "priority_group",
+                      currency: "PKR",
+                      value: PLAN_VALUE,
+                    })
+                  }
+                  className="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-semibold text-white shadow-lg shadow-green-500/25 hover:opacity-95 transition"
+                >
+                  👥 Join Priority Group →
+                </a>
+                <a
+                  href={site.whatsappChannel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-xs font-semibold text-green-700 underline underline-offset-2"
+                >
+                  📢 Humara WhatsApp Channel bhi follow karo →
+                </a>
+              </div>
+            )}
+
             {UPLOAD_ENABLED ? (
               uploaded ? (
                 <div className="mt-6 rounded-2xl border border-green-300 bg-green-50 p-6 text-center">

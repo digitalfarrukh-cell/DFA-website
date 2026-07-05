@@ -18,6 +18,8 @@ export const site = {
 
   // Contact / enrollment
   whatsapp: "+923190667050",
+  // Broadcast channel — everyone (free-class + funnel leads) is sent here.
+  whatsappChannel: "https://whatsapp.com/channel/0029VbCBki5Chq6RPDOy8Z1k",
   whatsappMessage: "Hi DFA! I'd like to enroll in the Digital Marketing program.",
   // Soft / low-friction CTA — free guidance before paying
   whatsappConsultMessage:
@@ -65,6 +67,8 @@ export const site = {
   // flow stays primary.
   enrollment: {
     uploadEnabled: true,
+    // High-intent funnel leads join this priority group (for 1-on-1 dealing).
+    leadGroup: "https://chat.whatsapp.com/Gqgi5nB7tKi5noHplWhwdi",
   },
 
   // Free lead-magnet class. Registrants message on WhatsApp → you send the
@@ -78,10 +82,7 @@ export const site = {
     startHour: 21, // 9 PM (PKT)
     endHour: 22, // 10 PM
     tzOffset: 5, // Pakistan = UTC+5 (no DST)
-    // Registrants auto-open this WhatsApp group (class link + reminders live here).
-    whatsappGroup: "https://chat.whatsapp.com/JLg4M4pQ8rzF9xMTbp2sSb",
-    waMessage:
-      "Hi DFA! 🙌 Main aapki FREE Saturday class (9 PM) ke baare mein poochhna chahta/chahti hoon 🙏",
+    // Registrants auto-open the broadcast channel (class link + reminders live there).
   },
 
   // ============================================================

@@ -6,7 +6,7 @@ import { track } from "@/lib/fbq";
 import Countdown from "@/components/Countdown";
 
 const FC = site.freeClass;
-const groupLink = FC.whatsappGroup;
+const channelLink = site.whatsappChannel;
 
 export default function FreeClassModal() {
   const [open, setOpen] = useState(false);
@@ -78,7 +78,7 @@ export default function FreeClassModal() {
     });
     setSubmitting(false);
     setDone(true);
-    window.open(groupLink, "_blank", "noopener,noreferrer");
+    window.open(channelLink, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -105,16 +105,16 @@ export default function FreeClassModal() {
               Registered{name ? `, ${name}` : ""}!
             </h3>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              WhatsApp <b>group</b> khul gaya hai — bas <b>Join</b> kar lo. Class ka{" "}
+              WhatsApp <b>channel</b> khul gaya hai — bas <b>Follow</b> kar lo. Class ka{" "}
               <b>link</b> aur reminders wahin milenge. Milte hain <b>Saturday 9 PM</b>! 🎉
             </p>
             <a
-              href={groupLink}
+              href={channelLink}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-white shadow-lg shadow-green-500/25 hover:opacity-95 transition"
             >
-              Group na khula? Yahan Join karein →
+              Channel na khula? Yahan Follow karein →
             </a>
           </div>
         ) : (
@@ -127,7 +127,7 @@ export default function FreeClassModal() {
             </h3>
             <p className="mt-1.5 text-sm text-slate-500">
               {FC.scheduleLabel} · Live on Zoom · Bilkul free. Register karo aur
-              WhatsApp group join kar lo — class link wahin milega.
+              WhatsApp channel follow kar lo — class link wahin milega.
             </p>
             <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-2.5 text-center text-sm text-slate-600">
               Next class in <Countdown weekly />
@@ -159,10 +159,10 @@ export default function FreeClassModal() {
               onClick={register}
               className="mt-5 w-full flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 transition enabled:hover:opacity-95 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {submitting ? "Registering…" : "Register & Join WhatsApp Group →"}
+              {submitting ? "Registering…" : "Register & Follow WhatsApp Channel →"}
             </button>
             <p className="mt-3 text-center text-[11px] text-slate-400">
-              Register karte hi WhatsApp group khul jayega — bas Join kar lo.
+              Register karte hi WhatsApp channel khul jayega — bas Follow kar lo.
             </p>
           </>
         )}

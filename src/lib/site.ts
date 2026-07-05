@@ -54,7 +54,9 @@ export const site = {
     on: true,
     batch: "Batch 9",
     seatsLeft: 7,
-    deadline: "Closing in 2 days",
+    // Evergreen live countdown length (hours). Each visitor gets this
+    // window; when it hits zero it restarts, so it never stops.
+    countdownHours: 48,
   },
 
   // ============================================================

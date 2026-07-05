@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
+import Countdown from "@/components/Countdown";
 
 const links = [
   { href: "#curriculum", label: "Curriculum" },
@@ -37,8 +38,8 @@ export default function Navbar() {
         <div className="relative bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] text-white text-xs sm:text-sm">
           <div className="mx-auto max-w-6xl px-5 py-2 flex items-center justify-center gap-2 text-center">
             <span className="font-semibold">
-              🔥 {site.scarcity.batch} — only {site.scarcity.seatsLeft} seats left ·{" "}
-              {site.scarcity.deadline}
+              🔥 {site.scarcity.batch} — only {site.scarcity.seatsLeft} seats left · Closes in{" "}
+              <Countdown />
             </span>
             <EnrollButton className="ml-1 underline underline-offset-2 font-semibold hover:opacity-90">
               Enroll now

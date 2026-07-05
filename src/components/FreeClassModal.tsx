@@ -6,9 +6,7 @@ import { track } from "@/lib/fbq";
 import Countdown from "@/components/Countdown";
 
 const FC = site.freeClass;
-const wa = `https://wa.me/${site.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-  FC.waMessage
-)}`;
+const groupLink = FC.whatsappGroup;
 
 export default function FreeClassModal() {
   const [open, setOpen] = useState(false);
@@ -80,7 +78,7 @@ export default function FreeClassModal() {
     });
     setSubmitting(false);
     setDone(true);
-    window.open(wa, "_blank", "noopener,noreferrer");
+    window.open(groupLink, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -107,17 +105,16 @@ export default function FreeClassModal() {
               Registered{name ? `, ${name}` : ""}!
             </h3>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              WhatsApp khul gaya hai — bas woh message <b>Send</b> kar do, hum aapko
-              class ka <b>link</b> aur reminders bhej denge. Milte hain{" "}
-              <b>Saturday 9 PM</b>! 🎉
+              WhatsApp <b>group</b> khul gaya hai — bas <b>Join</b> kar lo. Class ka{" "}
+              <b>link</b> aur reminders wahin milenge. Milte hain <b>Saturday 9 PM</b>! 🎉
             </p>
             <a
-              href={wa}
+              href={groupLink}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-white shadow-lg shadow-green-500/25 hover:opacity-95 transition"
             >
-              WhatsApp na khula? Yahan tap karein →
+              Group na khula? Yahan Join karein →
             </a>
           </div>
         ) : (
@@ -129,8 +126,8 @@ export default function FreeClassModal() {
               Fiverr/Upwork pe apna Pehla Client — live
             </h3>
             <p className="mt-1.5 text-sm text-slate-500">
-              {FC.scheduleLabel} · Live on Zoom · Bilkul free. Register karo, hum
-              WhatsApp pe link bhej denge.
+              {FC.scheduleLabel} · Live on Zoom · Bilkul free. Register karo aur
+              WhatsApp group join kar lo — class link wahin milega.
             </p>
             <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-2.5 text-center text-sm text-slate-600">
               Next class in <Countdown weekly />
@@ -162,10 +159,10 @@ export default function FreeClassModal() {
               onClick={register}
               className="mt-5 w-full flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 transition enabled:hover:opacity-95 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {submitting ? "Registering…" : "Register & Get Link on WhatsApp →"}
+              {submitting ? "Registering…" : "Register & Join WhatsApp Group →"}
             </button>
             <p className="mt-3 text-center text-[11px] text-slate-400">
-              Register karte hi WhatsApp khulega — bas message send karna hai.
+              Register karte hi WhatsApp group khul jayega — bas Join kar lo.
             </p>
           </>
         )}

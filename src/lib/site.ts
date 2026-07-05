@@ -78,8 +78,10 @@ export const site = {
     startHour: 21, // 9 PM (PKT)
     endHour: 22, // 10 PM
     tzOffset: 5, // Pakistan = UTC+5 (no DST)
+    // Registrants auto-open this WhatsApp group (class link + reminders live here).
+    whatsappGroup: "https://chat.whatsapp.com/JLg4M4pQ8rzF9xMTbp2sSb",
     waMessage:
-      "Hi DFA! 🙌 Main aapki FREE Saturday class (9 PM) join karna chahta/chahti hoon — mujhe class/group link bhej dein 🙏",
+      "Hi DFA! 🙌 Main aapki FREE Saturday class (9 PM) ke baare mein poochhna chahta/chahti hoon 🙏",
   },
 
   // ============================================================

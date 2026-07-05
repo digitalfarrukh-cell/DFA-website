@@ -2,6 +2,14 @@ import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
 
 export default function Hero() {
+  const plan = site.plans.mid;
+  const highlights = [
+    "Deeper Meta & Google paid ads",
+    "Shopify store setup + product listings",
+    "Upwork & Fiverr freelancing setup",
+    "Landing pages & lead funnels",
+    "1 live campaign + weekly support",
+  ];
   return (
     <section id="top" className="relative overflow-hidden dfa-glow pt-28 pb-16 sm:pt-36 sm:pb-24">
       {/* Soft optimistic blobs */}
@@ -23,6 +31,14 @@ export default function Hero() {
             <br className="hidden sm:block" /> then earn from{" "}
             <span className="dfa-gradient-text">high-ticket clients</span>
           </h1>
+
+          {/* Price surfaced up top — most visitors never scroll to Pricing */}
+          <div className="dfa-fade-up mt-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-red-200 bg-white px-4 py-2.5 shadow-sm">
+            <span className="text-sm font-semibold text-red-600">☀️ Summer Offer</span>
+            <span className="text-slate-400 line-through">{plan.originalPrice}</span>
+            <span className="text-2xl font-extrabold text-slate-900">{plan.price}</span>
+            <span className="text-xs text-slate-400">one-time · {plan.name} program</span>
+          </div>
 
           <p className="dfa-fade-up mt-5 max-w-xl text-base sm:text-lg text-slate-500 leading-relaxed">
             On summer break from uni, college or school? Put it to work. DFA&apos;s
@@ -76,32 +92,45 @@ export default function Hero() {
 
         {/* Right visual */}
         <div className="dfa-fade-up relative">
-          <div className="rounded-3xl bg-white p-6 shadow-2xl shadow-slate-300/40 ring-1 ring-slate-100">
+          <div className="dfa-ring rounded-3xl bg-white p-6 sm:p-7 shadow-2xl shadow-red-500/10">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-slate-700">Your growth</span>
-              <span className="rounded-full bg-green-50 text-green-700 text-xs font-semibold px-2.5 py-1">
-                +218% ↑
+              <span className="inline-flex items-center rounded-full bg-red-50 text-red-600 text-xs font-semibold px-3 py-1">
+                ☀️ Summer Offer
+              </span>
+              <span className="rounded-full bg-green-50 text-green-700 text-[11px] font-bold px-2.5 py-1">
+                Save Rs. 5,000
               </span>
             </div>
-            <div className="mt-6 flex items-end gap-3 h-40">
-              {[35, 55, 45, 70, 85, 100].map((h, i) => (
-                <div
-                  key={i}
-                  className="flex-1 rounded-t-lg bg-gradient-to-t from-[#ff2d2d] to-[#ff8a5b]"
-                  style={{ height: `${h}%` }}
-                />
+
+            <h3 className="mt-4 text-xl font-bold text-slate-900">{plan.name} Program</h3>
+            <div className="mt-1 flex items-end gap-2">
+              <span className="text-lg font-semibold text-slate-400 line-through">
+                {plan.originalPrice}
+              </span>
+              <span className="text-3xl font-extrabold text-slate-900">{plan.price}</span>
+              <span className="mb-1 text-sm text-slate-400">one-time</span>
+            </div>
+            <p className="mt-1 text-xs text-slate-400">6–8 week program · beginner-friendly</p>
+
+            <ul className="mt-4 space-y-2">
+              {highlights.map((f) => (
+                <li key={f} className="flex gap-2.5 text-sm text-slate-700">
+                  <span className="grid place-items-center h-5 w-5 rounded-full bg-red-100 text-red-600 text-xs shrink-0">
+                    ✓
+                  </span>
+                  {f}
+                </li>
               ))}
+            </ul>
+
+            <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-xs text-slate-500">
+              📅 {site.classes.perWeek} classes/week · {site.classes.duration} each · live +
+              recorded
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-violet-50 p-4">
-                <div className="text-xs text-violet-500">Active clients</div>
-                <div className="text-2xl font-bold text-violet-700">12</div>
-              </div>
-              <div className="rounded-2xl bg-red-50 p-4">
-                <div className="text-xs text-red-500">New leads</div>
-                <div className="text-2xl font-bold text-red-600">38</div>
-              </div>
-            </div>
+
+            <EnrollButton className="dfa-pulse mt-5 w-full flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 hover:opacity-95 transition">
+              Enroll Now →
+            </EnrollButton>
           </div>
           <div className="absolute -bottom-5 -left-5 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-slate-100 flex items-center gap-3 dfa-float">
             <span className="grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[#ff2d2d] to-[#ff5e3a] text-white text-sm">

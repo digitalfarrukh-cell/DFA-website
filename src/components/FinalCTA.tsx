@@ -1,4 +1,4 @@
-import { site, waLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
 
 export default function FinalCTA() {
@@ -24,10 +24,10 @@ export default function FinalCTA() {
           </EnrollButton>
 
           <p className="mt-5 text-sm text-slate-500">
-            Or message us directly:{" "}
-            <a href={waLink} className="text-red-600 font-medium underline underline-offset-4">
-              WhatsApp
-            </a>
+            Have questions first?{" "}
+            <EnrollButton className="text-red-600 font-medium underline underline-offset-4">
+              Chat with us
+            </EnrollButton>
           </p>
         </div>
       </div>

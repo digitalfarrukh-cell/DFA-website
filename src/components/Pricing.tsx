@@ -1,4 +1,4 @@
-import { site, waConsultLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
 
 export default function Pricing() {
@@ -78,14 +78,9 @@ export default function Pricing() {
 
         <p className="mt-8 text-center text-sm text-slate-500">
           Not sure if it&apos;s right for you?{" "}
-          <a
-            href={waConsultLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-600 font-medium underline underline-offset-4"
-          >
-            Message us on WhatsApp
-          </a>{" "}
+          <EnrollButton className="text-red-600 font-medium underline underline-offset-4">
+            Answer a few quick questions
+          </EnrollButton>{" "}
           — we&apos;ll guide you first.
         </p>
       </div>

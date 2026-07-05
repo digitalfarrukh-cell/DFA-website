@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site, waLink } from "@/lib/site";
+import { site } from "@/lib/site";
+import EnrollButton from "@/components/EnrollButton";
 
 const legalLinks = [
   { href: "/privacy", label: "Privacy Policy" },
@@ -33,9 +34,7 @@ export default function Footer() {
             >
               Portfolio
             </a>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900">
-              WhatsApp
-            </a>
+            <EnrollButton className="hover:text-slate-900">WhatsApp</EnrollButton>
             <a href={`mailto:${site.email}`} className="hover:text-slate-900">
               Email
             </a>

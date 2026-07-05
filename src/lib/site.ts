@@ -72,10 +72,14 @@ export const site = {
   freeClass: {
     on: true,
     title: "FREE Live Class: Fiverr/Upwork pe apna Pehla Client",
-    dateLabel: "Sat, 11 July · 9:00 PM",
-    targetISO: "2026-07-11T21:00:00+05:00", // Sat 11 Jul 2026, 9 PM PKT
+    scheduleLabel: "Every Saturday · 9:00–10:00 PM",
+    // Recurring weekly — the countdown auto-rolls to the next occurrence.
+    weekday: 6, // 0=Sun … 6=Sat
+    startHour: 21, // 9 PM (PKT)
+    endHour: 22, // 10 PM
+    tzOffset: 5, // Pakistan = UTC+5 (no DST)
     waMessage:
-      "Hi DFA! 🙌 Main aapki FREE class (Sat 11 July, 9 PM) join karna chahta/chahti hoon — mujhe class/group link bhej dein 🙏",
+      "Hi DFA! 🙌 Main aapki FREE Saturday class (9 PM) join karna chahta/chahti hoon — mujhe class/group link bhej dein 🙏",
   },
 
   // ============================================================

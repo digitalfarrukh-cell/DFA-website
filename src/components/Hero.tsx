@@ -38,13 +38,13 @@ export default function Hero() {
           <div className="dfa-fade-up mt-5 rounded-2xl border border-red-200 bg-white p-4 shadow-sm max-w-xl">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-bold text-red-600">
               🎓 FREE Live Class
-              <span className="text-slate-900">· {site.freeClass.dateLabel}</span>
+              <span className="text-slate-900">· {site.freeClass.scheduleLabel}</span>
             </div>
             <p className="mt-1 text-sm text-slate-600">
-              Fiverr/Upwork pe apna pehla client kaise laayein — live on Zoom. Bilkul free.
+              Fiverr/Upwork pe apna pehla client kaise laayein — har Saturday, live on Zoom. Bilkul free.
             </p>
             <div className="mt-2 text-xs text-slate-500">
-              Starts in <Countdown targetISO={site.freeClass.targetISO} />
+              Next class in <Countdown weekly />
             </div>
           </div>
 

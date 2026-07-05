@@ -56,7 +56,7 @@ export default function FreeClassModal() {
       fd.append("type", "free-class");
       fd.append("name", name);
       fd.append("phone", phone);
-      fd.append("plan", "FREE Class — " + FC.dateLabel);
+      fd.append("plan", "FREE Class — " + FC.scheduleLabel);
       fd.append("answers", "[]");
       await fetch("/api/enroll", { method: "POST", body: fd });
     } catch {
@@ -97,7 +97,7 @@ export default function FreeClassModal() {
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
               WhatsApp khul gaya hai — bas woh message <b>Send</b> kar do, hum aapko
               class ka <b>link</b> aur reminders bhej denge. Milte hain{" "}
-              <b>{FC.dateLabel}</b>! 🎉
+              <b>Saturday 9 PM</b>! 🎉
             </p>
             <a
               href={wa}
@@ -117,12 +117,11 @@ export default function FreeClassModal() {
               Fiverr/Upwork pe apna Pehla Client — live
             </h3>
             <p className="mt-1.5 text-sm text-slate-500">
-              {FC.dateLabel} · Live on Zoom · Bilkul free. Register karo, hum WhatsApp
-              pe link bhej denge.
+              {FC.scheduleLabel} · Live on Zoom · Bilkul free. Register karo, hum
+              WhatsApp pe link bhej denge.
             </p>
             <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-2.5 text-center text-sm text-slate-600">
-              Starts in{" "}
-              <Countdown targetISO={FC.targetISO} />
+              Next class in <Countdown weekly />
             </div>
 
             <div className="mt-5 space-y-3">

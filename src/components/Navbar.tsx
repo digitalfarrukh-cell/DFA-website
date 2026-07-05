@@ -39,8 +39,7 @@ export default function Navbar() {
         <div className="relative bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] text-white text-xs sm:text-sm">
           <div className="mx-auto max-w-6xl px-5 py-2 flex items-center justify-center gap-2 text-center">
             <span className="font-semibold">
-              🎓 FREE Live Class — {site.freeClass.dateLabel} · starts in{" "}
-              <Countdown targetISO={site.freeClass.targetISO} />
+              🎓 FREE Class every Saturday 9 PM · next in <Countdown weekly />
             </span>
             <FreeClassButton className="ml-1 underline underline-offset-2 font-semibold hover:opacity-90">
               Register free

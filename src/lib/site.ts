@@ -90,6 +90,16 @@ export const site = {
       q: "Course kab start karna chahte ho?",
       options: ["🔥 Main abhi ready hoon", "📅 Is hafte", "👀 Filhaal sirf explore kar raha hoon"],
     },
+    {
+      id: "payment",
+      q: "Fee (Rs. 9,999) pay karne ke liye kab ready ho?",
+      options: [
+        "💳 Abhi / aaj hi ready hoon",
+        "📅 1–2 din mein",
+        "🤔 Pehle guidance chahiye, phir pay karunga",
+        "🙅 Abhi budget nahi hai",
+      ],
+    },
   ],
 
   // Proof numbers (update when real)

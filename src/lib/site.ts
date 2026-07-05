@@ -64,7 +64,7 @@ export const site = {
   // SHEET_WEBHOOK_URL env var is set on Vercel. Until then the WhatsApp
   // flow stays primary.
   enrollment: {
-    uploadEnabled: false,
+    uploadEnabled: true,
   },
 
   // ============================================================

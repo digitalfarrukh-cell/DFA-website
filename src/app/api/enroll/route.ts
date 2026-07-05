@@ -1,14 +1,16 @@
 // Receives the enrollment payload (screening answers + name/phone + payment
-// screenshot) from the browser and forwards it to a Google Apps Script Web
-// App, which appends a row to the Google Sheet and saves the screenshot to
-// Drive. The Apps Script URL is kept server-side in SHEET_WEBHOOK_URL so it
-// is never exposed in the client bundle or the repo.
+// screenshot) from the browser and emails it — screenshot attached — to the
+// DFA inbox via Resend, so every upload arrives as a notification in real time.
+// Secrets stay server-side in env vars (never in the client bundle or repo).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const RESEND_ENDPOINT = "https://api.resend.com/emails";
+
 export async function POST(request: Request) {
-  const webhook = process.env.SHEET_WEBHOOK_URL;
-  if (!webhook) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.NOTIFY_EMAIL || "digitalfarrukh@gmail.com";
+  if (!apiKey) {
     return Response.json({ ok: false, error: "not_configured" }, { status: 503 });
   }
 
@@ -18,49 +20,66 @@ export async function POST(request: Request) {
     const phone = String(form.get("phone") || "");
     const plan = String(form.get("plan") || "");
 
-    let answers: unknown = [];
+    type QA = { q: string; a: string };
+    let answers: QA[] = [];
     try {
-      answers = JSON.parse(String(form.get("answers") || "[]"));
+      const parsed = JSON.parse(String(form.get("answers") || "[]"));
+      if (Array.isArray(parsed)) answers = parsed as QA[];
     } catch {
       answers = [];
     }
 
-    let imageBase64 = "";
-    let imageMime = "";
-    let imageName = "";
+    const attachments: { filename: string; content: string }[] = [];
     const file = form.get("screenshot");
     if (file && typeof file !== "string") {
       const buf = Buffer.from(await file.arrayBuffer());
-      imageBase64 = buf.toString("base64");
-      imageMime = file.type || "image/jpeg";
-      imageName = file.name || "payment.jpg";
+      attachments.push({
+        filename: file.name || "payment.jpg",
+        content: buf.toString("base64"),
+      });
     }
 
-    const res = await fetch(webhook, {
+    const esc = (s: string) =>
+      String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] as string));
+
+    const rows = answers
+      .map(
+        (x) =>
+          `<tr><td style="padding:6px 12px;color:#64748b">${esc(x.q)}</td>` +
+          `<td style="padding:6px 12px;font-weight:600;color:#0f172a">${esc(x.a)}</td></tr>`
+      )
+      .join("");
+
+    const html = `
+      <div style="font-family:system-ui,Arial,sans-serif;max-width:560px">
+        <h2 style="margin:0 0 4px">🟢 New DFA Enrollment</h2>
+        <p style="margin:0 0 16px;color:#64748b">${esc(plan)}</p>
+        <table style="border-collapse:collapse;width:100%;font-size:14px">
+          <tr><td style="padding:6px 12px;color:#64748b">Name</td><td style="padding:6px 12px;font-weight:600;color:#0f172a">${esc(name)}</td></tr>
+          <tr><td style="padding:6px 12px;color:#64748b">WhatsApp</td><td style="padding:6px 12px;font-weight:600;color:#0f172a">${esc(phone)}</td></tr>
+          ${rows}
+        </table>
+        <p style="margin:16px 0 0;color:#64748b;font-size:13px">📎 Payment screenshot attached.</p>
+      </div>`;
+
+    const res = await fetch(RESEND_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        name,
-        phone,
-        plan,
-        answers,
-        imageBase64,
-        imageMime,
-        imageName,
+        from: "DFA Enrollments <onboarding@resend.dev>",
+        to: [to],
+        subject: `🟢 New enrollment — ${name || "Lead"} (${phone || "no number"})`,
+        html,
+        attachments,
       }),
     });
 
-    const text = await res.text();
-    let ok = res.ok;
-    try {
-      const j = JSON.parse(text);
-      if (j && j.ok === false) ok = false;
-    } catch {
-      /* Apps Script may return non-JSON on success; rely on res.ok */
-    }
-
-    if (!ok) {
-      return Response.json({ ok: false, error: "sheet_error" }, { status: 502 });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      return Response.json({ ok: false, error: "email_failed", detail }, { status: 502 });
     }
     return Response.json({ ok: true });
   } catch (e) {

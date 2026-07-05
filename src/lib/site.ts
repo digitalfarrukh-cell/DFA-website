@@ -59,6 +59,14 @@ export const site = {
     countdownHours: 48,
   },
 
+  // Enrollment — on-site payment-screenshot upload → Google Sheet.
+  // Turn this ON only after the Apps Script Web App is deployed AND the
+  // SHEET_WEBHOOK_URL env var is set on Vercel. Until then the WhatsApp
+  // flow stays primary.
+  enrollment: {
+    uploadEnabled: false,
+  },
+
   // ============================================================
   // Enrollment funnel — screening questions.
   // Jab koi "Enroll" pe click kare to yeh questions ek-ek kar ke

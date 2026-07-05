@@ -29,6 +29,18 @@ export default function FreeClassModal() {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("dfa-freeclass", handler);
     window.addEventListener("keydown", onKey);
+
+    // Deep-link: /?register (or #register) auto-opens the registration form,
+    // so the free-class link can be shared straight in ads / WhatsApp.
+    const params = new URLSearchParams(window.location.search);
+    if (
+      params.has("register") ||
+      params.has("class") ||
+      window.location.hash.toLowerCase().includes("register")
+    ) {
+      setTimeout(handler, 500);
+    }
+
     return () => {
       window.removeEventListener("dfa-freeclass", handler);
       window.removeEventListener("keydown", onKey);

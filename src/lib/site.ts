@@ -49,6 +49,14 @@ export const site = {
     discount: "Student summer offer",
   },
 
+  // Scarcity / urgency (FOMO) — update these per batch
+  scarcity: {
+    on: true,
+    batch: "Batch 9",
+    seatsLeft: 7,
+    deadline: "Closing in 2 days",
+  },
+
   // ============================================================
   // Enrollment funnel — screening questions.
   // Jab koi "Enroll" pe click kare to yeh questions ek-ek kar ke

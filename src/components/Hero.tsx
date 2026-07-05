@@ -93,6 +93,12 @@ export default function Hero() {
         {/* Right visual */}
         <div className="dfa-fade-up relative">
           <div className="dfa-ring rounded-3xl bg-white p-6 sm:p-7 shadow-2xl shadow-red-500/10">
+            {site.scarcity.on && (
+              <div className="dfa-pulse -mt-1 mb-4 flex items-center justify-center gap-1.5 rounded-xl bg-red-600 px-3 py-2 text-center text-[11px] font-bold text-white">
+                🔥 {site.scarcity.batch}: only {site.scarcity.seatsLeft} seats left ·{" "}
+                {site.scarcity.deadline}
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center rounded-full bg-red-50 text-red-600 text-xs font-semibold px-3 py-1">
                 ☀️ Summer Offer

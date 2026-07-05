@@ -33,13 +33,15 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       {/* Summer announcement strip */}
-      {site.summer.on && showBar && (
+      {site.scarcity.on && showBar && (
         <div className="relative bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] text-white text-xs sm:text-sm">
           <div className="mx-auto max-w-6xl px-5 py-2 flex items-center justify-center gap-2 text-center">
-            <span className="font-semibold">{site.summer.headline}</span>
-            <span className="hidden sm:inline opacity-90">— {site.summer.discount}</span>
+            <span className="font-semibold">
+              🔥 {site.scarcity.batch} — only {site.scarcity.seatsLeft} seats left ·{" "}
+              {site.scarcity.deadline}
+            </span>
             <EnrollButton className="ml-1 underline underline-offset-2 font-semibold hover:opacity-90">
-              Claim now
+              Enroll now
             </EnrollButton>
           </div>
           <button

@@ -118,7 +118,7 @@ export default function EnrollModal() {
 
   return (
     <div
-      className="fixed inset-0 z-[70] grid place-items-center bg-slate-900/55 backdrop-blur-sm px-4 py-8 overflow-y-auto"
+      className="fixed inset-0 z-[70] grid justify-items-center items-start sm:items-center bg-slate-900/55 backdrop-blur-sm px-4 py-8 overflow-y-auto"
       onClick={() => setOpen(false)}
     >
       <div
@@ -195,18 +195,23 @@ export default function EnrollModal() {
             <div className="mt-5 space-y-3">
               <input
                 type="text"
+                autoFocus
+                autoComplete="name"
+                enterKeyHint="next"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Aapka poora naam"
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#ff5e3a]"
+                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
               />
               <input
                 type="tel"
                 inputMode="numeric"
+                autoComplete="tel"
+                enterKeyHint="done"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="WhatsApp number (e.g. 03xx-xxxxxxx)"
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#ff5e3a]"
+                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
               />
             </div>
 

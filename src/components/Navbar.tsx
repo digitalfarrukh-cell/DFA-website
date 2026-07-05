@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
+import FreeClassButton from "@/components/FreeClassButton";
 import Countdown from "@/components/Countdown";
 
 const links = [
@@ -34,16 +35,16 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       {/* Summer announcement strip */}
-      {site.scarcity.on && showBar && (
+      {site.freeClass.on && showBar && (
         <div className="relative bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] text-white text-xs sm:text-sm">
           <div className="mx-auto max-w-6xl px-5 py-2 flex items-center justify-center gap-2 text-center">
             <span className="font-semibold">
-              🔥 {site.scarcity.batch} — only {site.scarcity.seatsLeft} seats left · Closes in{" "}
-              <Countdown />
+              🎓 FREE Live Class — {site.freeClass.dateLabel} · starts in{" "}
+              <Countdown targetISO={site.freeClass.targetISO} />
             </span>
-            <EnrollButton className="ml-1 underline underline-offset-2 font-semibold hover:opacity-90">
-              Enroll now
-            </EnrollButton>
+            <FreeClassButton className="ml-1 underline underline-offset-2 font-semibold hover:opacity-90">
+              Register free
+            </FreeClassButton>
           </div>
           <button
             onClick={() => setShowBar(false)}

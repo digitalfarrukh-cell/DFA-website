@@ -67,6 +67,17 @@ export const site = {
     uploadEnabled: true,
   },
 
+  // Free lead-magnet class. Registrants message on WhatsApp → you send the
+  // group/class link manually. Update per class.
+  freeClass: {
+    on: true,
+    title: "FREE Live Class: Fiverr/Upwork pe apna Pehla Client",
+    dateLabel: "Sat, 11 July · 9:00 PM",
+    targetISO: "2026-07-11T21:00:00+05:00", // Sat 11 Jul 2026, 9 PM PKT
+    waMessage:
+      "Hi DFA! 🙌 Main aapki FREE class (Sat 11 July, 9 PM) join karna chahta/chahti hoon — mujhe class/group link bhej dein 🙏",
+  },
+
   // ============================================================
   // Enrollment funnel — screening questions.
   // Jab koi "Enroll" pe click kare to yeh questions ek-ek kar ke

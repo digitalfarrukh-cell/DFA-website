@@ -1,5 +1,6 @@
 import { site } from "@/lib/site";
 import EnrollButton from "@/components/EnrollButton";
+import FreeClassButton from "@/components/FreeClassButton";
 import Countdown from "@/components/Countdown";
 
 export default function Hero() {
@@ -33,12 +34,18 @@ export default function Hero() {
             <span className="dfa-gradient-text">high-ticket clients</span>
           </h1>
 
-          {/* Price surfaced up top — most visitors never scroll to Pricing */}
-          <div className="dfa-fade-up mt-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-red-200 bg-white px-4 py-2.5 shadow-sm">
-            <span className="text-sm font-semibold text-red-600">☀️ Summer Offer</span>
-            <span className="text-slate-400 line-through">{plan.originalPrice}</span>
-            <span className="text-2xl font-extrabold text-slate-900">{plan.price}</span>
-            <span className="text-xs text-slate-400">one-time · {plan.name} program</span>
+          {/* Free class — the new top-of-funnel lead magnet */}
+          <div className="dfa-fade-up mt-5 rounded-2xl border border-red-200 bg-white p-4 shadow-sm max-w-xl">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-bold text-red-600">
+              🎓 FREE Live Class
+              <span className="text-slate-900">· {site.freeClass.dateLabel}</span>
+            </div>
+            <p className="mt-1 text-sm text-slate-600">
+              Fiverr/Upwork pe apna pehla client kaise laayein — live on Zoom. Bilkul free.
+            </p>
+            <div className="mt-2 text-xs text-slate-500">
+              Starts in <Countdown targetISO={site.freeClass.targetISO} />
+            </div>
           </div>
 
           <p className="dfa-fade-up mt-5 max-w-xl text-base sm:text-lg text-slate-500 leading-relaxed">
@@ -64,15 +71,12 @@ export default function Hero() {
           </p>
 
           <div className="dfa-fade-up mt-8 flex flex-col sm:flex-row items-center gap-3">
-            <EnrollButton className="dfa-pulse w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-8 py-4 font-semibold text-white shadow-xl shadow-red-500/30 hover:opacity-95 transition">
-              Enroll Now →
+            <FreeClassButton className="dfa-pulse w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-8 py-4 font-semibold text-white shadow-xl shadow-red-500/30 hover:opacity-95 transition">
+              🎓 Register for FREE Class →
+            </FreeClassButton>
+            <EnrollButton className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-8 py-4 font-semibold text-slate-700 hover:bg-slate-50 transition">
+              Enroll in full course
             </EnrollButton>
-            <a
-              href="#pricing"
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-8 py-4 font-semibold text-slate-700 hover:bg-slate-50 transition"
-            >
-              View Plans &amp; Pricing
-            </a>
           </div>
 
           <p className="dfa-fade-up mt-4 text-sm text-slate-500">

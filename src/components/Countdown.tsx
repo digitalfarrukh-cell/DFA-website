@@ -3,34 +3,45 @@
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 
-// Evergreen countdown — never stops. Each visitor gets a fresh window
-// (site.scarcity.countdownHours) on first visit, stored in localStorage.
-// When it hits zero it restarts automatically, so it always keeps ticking.
+// Two modes:
+// • targetISO given → count down to that fixed moment (e.g. the free class).
+//   When it passes, shows "Live now 🔴".
+// • no prop → evergreen: each visitor gets a fresh scarcity window that
+//   restarts when it hits zero, so it never stops.
 const KEY = "dfa_deadline_v1";
 
-export default function Countdown() {
+export default function Countdown({ targetISO }: { targetISO?: string }) {
   const [left, setLeft] = useState<number | null>(null);
 
   useEffect(() => {
-    const windowMs = site.scarcity.countdownHours * 3_600_000;
+    let tick: () => void;
 
-    const target = () => {
-      const now = Date.now();
-      let t = Number(localStorage.getItem(KEY));
-      if (!t || Number.isNaN(t) || t <= now) {
-        t = now + windowMs; // start (or restart) the window — evergreen
-        localStorage.setItem(KEY, String(t));
-      }
-      return t;
-    };
+    if (targetISO) {
+      const t = new Date(targetISO).getTime();
+      tick = () => setLeft(t - Date.now());
+    } else {
+      const windowMs = site.scarcity.countdownHours * 3_600_000;
+      const target = () => {
+        const now = Date.now();
+        let t = Number(localStorage.getItem(KEY));
+        if (!t || Number.isNaN(t) || t <= now) {
+          t = now + windowMs;
+          localStorage.setItem(KEY, String(t));
+        }
+        return t;
+      };
+      tick = () => setLeft(target() - Date.now());
+    }
 
-    const tick = () => setLeft(target() - Date.now());
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [targetISO]);
 
-  if (left === null) return null; // avoid SSR/hydration mismatch
+  if (left === null) return null;
+  if (targetISO && left <= 0) {
+    return <span className="font-bold whitespace-nowrap">Live now 🔴</span>;
+  }
 
   const clamp = Math.max(left, 0);
   const d = Math.floor(clamp / 86_400_000);

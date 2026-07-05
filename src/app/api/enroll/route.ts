@@ -16,6 +16,8 @@ export async function POST(request: Request) {
 
   try {
     const form = await request.formData();
+    const type = String(form.get("type") || "enrollment");
+    const isFreeClass = type === "free-class";
     const name = String(form.get("name") || "");
     const phone = String(form.get("phone") || "");
     const plan = String(form.get("plan") || "");
@@ -50,16 +52,17 @@ export async function POST(request: Request) {
       )
       .join("");
 
+    const heading = isFreeClass ? "🎓 New Free-Class Registration" : "🟢 New DFA Enrollment";
     const html = `
       <div style="font-family:system-ui,Arial,sans-serif;max-width:560px">
-        <h2 style="margin:0 0 4px">🟢 New DFA Enrollment</h2>
+        <h2 style="margin:0 0 4px">${heading}</h2>
         <p style="margin:0 0 16px;color:#64748b">${esc(plan)}</p>
         <table style="border-collapse:collapse;width:100%;font-size:14px">
           <tr><td style="padding:6px 12px;color:#64748b">Name</td><td style="padding:6px 12px;font-weight:600;color:#0f172a">${esc(name)}</td></tr>
           <tr><td style="padding:6px 12px;color:#64748b">WhatsApp</td><td style="padding:6px 12px;font-weight:600;color:#0f172a">${esc(phone)}</td></tr>
           ${rows}
         </table>
-        <p style="margin:16px 0 0;color:#64748b;font-size:13px">📎 Payment screenshot attached.</p>
+        ${attachments.length ? `<p style="margin:16px 0 0;color:#64748b;font-size:13px">📎 Payment screenshot attached.</p>` : ""}
       </div>`;
 
     const res = await fetch(RESEND_ENDPOINT, {
@@ -71,7 +74,9 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: "DFA Enrollments <onboarding@resend.dev>",
         to: [to],
-        subject: `🟢 New enrollment — ${name || "Lead"} (${phone || "no number"})`,
+        subject: isFreeClass
+          ? `🎓 Free-class registration — ${name || "Lead"} (${phone || "no number"})`
+          : `🟢 New enrollment — ${name || "Lead"} (${phone || "no number"})`,
         html,
         attachments,
       }),

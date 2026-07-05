@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Popup from "@/components/Popup";
 import EnrollModal from "@/components/EnrollModal";
+import FreeClassModal from "@/components/FreeClassModal";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <FloatingWhatsApp />
       <Popup />
       <EnrollModal />
+      <FreeClassModal />
     </>
   );
 }

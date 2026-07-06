@@ -151,6 +151,8 @@ export default function EnrollModal() {
         currency: "PKR",
         value: PLAN_VALUE,
       });
+      // Redirect to personal WhatsApp with details + "screenshot attached" note.
+      window.open(waPaid, "_blank", "noopener,noreferrer");
     } catch {
       setUploadErr("Upload nahi ho saka — neechay WhatsApp pe bhej dein.");
     } finally {
@@ -171,6 +173,16 @@ export default function EnrollModal() {
     `Main enroll karna chahta/chahti hoon — please guide karein 🙏`;
   const wa = `https://wa.me/${site.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
     msg
+  )}`;
+  // After the screenshot upload — personal WhatsApp confirmation message.
+  const waPaidMsg =
+    `🟢 ENROLLMENT — ${PLAN.name} (${PLAN.price})\n\n` +
+    `👤 Naam: ${name || "—"}\n` +
+    `📱 WhatsApp: ${phone || "—"}\n\n` +
+    `📋 Meri details:\n${detailLines}\n\n` +
+    `✅ Maine fee bhej di hai.\n📎 Payment screenshot attached 👇`;
+  const waPaid = `https://wa.me/${site.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+    waPaidMsg
   )}`;
   const waNumberPretty = site.whatsapp;
 
@@ -353,12 +365,21 @@ export default function EnrollModal() {
                 <div className="mt-6 rounded-2xl border border-green-300 bg-green-50 p-6 text-center">
                   <div className="text-4xl">✅</div>
                   <h4 className="mt-2 text-lg font-bold text-slate-900">
-                    Mil gaya{name ? `, ${name}` : ""}!
+                    Ho gaya{name ? `, ${name}` : ""}!
                   </h4>
                   <p className="mt-1.5 text-sm text-slate-600">
-                    Aapka payment screenshot receive ho gaya. Hum jald WhatsApp par
-                    aapko confirm kar ke course &amp; class access de denge. 🙌
+                    WhatsApp khul gaya hai — bas woh message <b>Send</b> kar do aur
+                    wahin apna <b>payment screenshot bhi attach</b> kar do. Hum foran
+                    aapko confirm kar denge. 🙌
                   </p>
+                  <a
+                    href={waPaid}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-white shadow-lg shadow-green-500/25 hover:opacity-95 transition"
+                  >
+                    WhatsApp na khula? Yahan tap karein →
+                  </a>
                 </div>
               ) : (
                 <>

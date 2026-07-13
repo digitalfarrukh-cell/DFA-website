@@ -83,6 +83,29 @@ export const site = {
     endHour: 22, // 10 PM
     tzOffset: 5, // Pakistan = UTC+5 (no DST)
     // Registrants auto-open the broadcast channel (class link + reminders live there).
+    // Light screening for the free class (city is asked separately + required).
+    screening: [
+      {
+        id: "stage",
+        q: "Aap abhi kis stage pe ho?",
+        options: [
+          "🌱 Bilkul newbie — zero se seekhna hai",
+          "📖 Thodi knowledge hai",
+          "🎯 Skill aati hai, par client laana nahi aata",
+          "💼 Already freelancing kar raha hoon",
+        ],
+      },
+      {
+        id: "help",
+        q: "Sabse zyada help kis mein chahiye?",
+        options: [
+          "🧲 Client kaise laayein",
+          "💻 Koi skill seekhni hai",
+          "📈 Fiverr / Upwork setup",
+          "📣 Meta / Facebook ads",
+        ],
+      },
+    ],
   },
 
   // ============================================================

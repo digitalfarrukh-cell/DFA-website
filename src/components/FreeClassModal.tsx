@@ -7,9 +7,15 @@ import Countdown from "@/components/Countdown";
 
 const FC = site.freeClass;
 const channelLink = site.whatsappChannel;
+const QUESTIONS = FC.screening;
+const CONTACT_STEP = QUESTIONS.length; // last step: city + name + number
+const TOTAL_STEPS = QUESTIONS.length + 1;
 
 export default function FreeClassModal() {
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [city, setCity] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -17,6 +23,9 @@ export default function FreeClassModal() {
 
   useEffect(() => {
     const handler = () => {
+      setStep(0);
+      setAnswers({});
+      setCity("");
       setName("");
       setPhone("");
       setSubmitting(false);
@@ -28,8 +37,7 @@ export default function FreeClassModal() {
     window.addEventListener("dfa-freeclass", handler);
     window.addEventListener("keydown", onKey);
 
-    // Deep-link: /?register (or #register) auto-opens the registration form,
-    // so the free-class link can be shared straight in ads / WhatsApp.
+    // Deep-link: /?register (or #register) auto-opens the registration form.
     const params = new URLSearchParams(window.location.search);
     if (
       params.has("register") ||
@@ -54,30 +62,47 @@ export default function FreeClassModal() {
 
   if (!open) return null;
 
-  const canSubmit =
-    name.trim().length > 1 && phone.replace(/[^0-9]/g, "").length >= 10;
+  const pick = (qid: string, option: string) => {
+    setAnswers((a) => ({ ...a, [qid]: option }));
+    setStep((s) => s + 1);
+  };
 
-  // Personal WhatsApp message so YOU know exactly who registered.
+  const canRegister =
+    city.trim().length > 1 &&
+    name.trim().length > 1 &&
+    phone.replace(/[^0-9]/g, "").length >= 10;
+
+  // WhatsApp message carries city + all answers → you know exactly who registered.
+  const detailLines = QUESTIONS.map(
+    (q) => `• ${q.q}\n   ${answers[q.id] ?? "—"}`
+  ).join("\n");
   const waMsg =
     `🎓 FREE CLASS registration\n\n` +
     `👤 Naam: ${name || "—"}\n` +
-    `📱 WhatsApp: ${phone || "—"}\n\n` +
-    `Main aapki FREE Saturday class (9 PM) join karna chahta/chahti hoon 🙌 — mujhe channel / class link bhej dein 🙏`;
+    `📱 WhatsApp: ${phone || "—"}\n` +
+    `🏙️ City: ${city || "—"}\n\n` +
+    `📋 Details:\n${detailLines}\n\n` +
+    `Main aapki FREE Saturday class (9 PM) join karna chahta/chahti hoon 🙏`;
   const wa = `https://wa.me/${site.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
     waMsg
   )}`;
 
   const register = async () => {
-    if (!canSubmit || submitting) return;
+    if (!canRegister || submitting) return;
     setSubmitting(true);
-    // Fire the registration notification email (best-effort — don't block WA).
     try {
       const fd = new FormData();
       fd.append("type", "free-class");
       fd.append("name", name);
       fd.append("phone", phone);
       fd.append("plan", "FREE Class — " + FC.scheduleLabel);
-      fd.append("answers", "[]");
+      fd.append(
+        "answers",
+        JSON.stringify([
+          { q: "City", a: city },
+          ...QUESTIONS.map((q) => ({ q: q.q, a: answers[q.id] ?? "" })),
+        ])
+      );
       await fetch("/api/enroll", { method: "POST", body: fd });
     } catch {
       /* ignore — user still gets the WhatsApp step */
@@ -90,6 +115,8 @@ export default function FreeClassModal() {
     setDone(true);
     window.open(wa, "_blank", "noopener,noreferrer");
   };
+
+  const progress = Math.round(((step + 1) / TOTAL_STEPS) * 100);
 
   return (
     <div
@@ -138,51 +165,109 @@ export default function FreeClassModal() {
           </div>
         ) : (
           <>
-            <div className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-600 text-[11px] font-semibold px-3 py-1">
-              🎓 FREE Live Class
-            </div>
-            <h3 className="mt-3 text-xl font-bold text-slate-900 leading-snug">
-              Fiverr/Upwork pe apna Pehla Client — live
-            </h3>
-            <p className="mt-1.5 text-sm text-slate-500">
-              {FC.scheduleLabel} · Live on Zoom · Bilkul free. Register karte hi WhatsApp
-              khulega — message bhejo aur channel follow karo. Class link wahin milega.
-            </p>
-            <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-2.5 text-center text-sm text-slate-600">
-              Next class in <Countdown weekly />
-            </div>
-
-            <div className="mt-5 space-y-3">
-              <input
-                type="text"
-                autoFocus
-                autoComplete="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Aapka poora naam"
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
-              />
-              <input
-                type="tel"
-                inputMode="numeric"
-                autoComplete="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="WhatsApp number (e.g. 03xx-xxxxxxx)"
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
+            {/* Progress bar */}
+            <div className="mt-1 mb-4 h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] transition-all duration-300"
+                style={{ width: `${progress}%` }}
               />
             </div>
 
-            <button
-              disabled={!canSubmit || submitting}
-              onClick={register}
-              className="mt-5 w-full flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 transition enabled:hover:opacity-95 disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {submitting ? "Registering…" : "Register & Message on WhatsApp →"}
-            </button>
-            <p className="mt-3 text-center text-[11px] text-slate-400">
-              Register karte hi WhatsApp khul jayega — bas message Send kar do.
-            </p>
+            {step < CONTACT_STEP ? (
+              /* ---- Screening question ---- */
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-600 text-[11px] font-semibold px-3 py-1">
+                  🎓 FREE Class · Sawal {step + 1} / {QUESTIONS.length}
+                </div>
+                <h3 className="mt-3 text-xl font-bold text-slate-900 leading-snug">
+                  {QUESTIONS[step].q}
+                </h3>
+                <div className="mt-5 grid gap-2.5">
+                  {QUESTIONS[step].options.map((opt) => {
+                    const selected = answers[QUESTIONS[step].id] === opt;
+                    return (
+                      <button
+                        key={opt}
+                        onClick={() => pick(QUESTIONS[step].id, opt)}
+                        className={`w-full text-left rounded-2xl border px-4 py-3.5 text-sm font-medium transition ${
+                          selected
+                            ? "border-[#ff5e3a] bg-red-50 text-slate-900"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-[#ff5e3a]/60 hover:bg-red-50/40"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+                {step > 0 && (
+                  <button
+                    onClick={() => setStep((s) => s - 1)}
+                    className="mt-5 text-xs text-slate-400 hover:text-slate-600"
+                  >
+                    ← Pichla sawal
+                  </button>
+                )}
+              </div>
+            ) : (
+              /* ---- Contact: city + name + number ---- */
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-600 text-[11px] font-semibold px-3 py-1">
+                  🎓 Aakhri step
+                </div>
+                <h3 className="mt-3 text-xl font-bold text-slate-900 leading-snug">
+                  Apni details do — class link WhatsApp pe milega
+                </h3>
+                <p className="mt-1.5 text-sm text-slate-500">
+                  {FC.scheduleLabel} · Live on Zoom · Bilkul free.
+                </p>
+                <div className="mt-3 rounded-2xl bg-slate-50 px-4 py-2.5 text-center text-sm text-slate-600">
+                  Next class in <Countdown weekly />
+                </div>
+
+                <div className="mt-5 space-y-3">
+                  <input
+                    type="text"
+                    autoFocus
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Aapki City (e.g. Lahore) *"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
+                  />
+                  <input
+                    type="text"
+                    autoComplete="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Aapka poora naam *"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
+                  />
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="WhatsApp number (03xx-xxxxxxx) *"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-base text-slate-800 outline-none focus:border-[#ff5e3a]"
+                  />
+                </div>
+
+                <button
+                  disabled={!canRegister || submitting}
+                  onClick={register}
+                  className="mt-5 w-full flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#ff2d2d] to-[#ff5e3a] px-6 py-3.5 font-semibold text-white shadow-lg shadow-red-500/25 transition enabled:hover:opacity-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {submitting ? "Registering…" : "Register & Message on WhatsApp →"}
+                </button>
+                <button
+                  onClick={() => setStep((s) => s - 1)}
+                  className="mt-4 block mx-auto text-xs text-slate-400 hover:text-slate-600"
+                >
+                  ← Pichla sawal
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>

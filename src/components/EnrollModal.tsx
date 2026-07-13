@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
-import { track, trackCustom } from "@/lib/fbq";
+import { track, trackCustom, setUserData } from "@/lib/fbq";
 import { compressImage } from "@/lib/enroll";
 
 // Single active plan — Freelancer (summer offer).
@@ -81,6 +81,7 @@ export default function EnrollModal() {
   // payment screen. This is the event campaigns should optimize for.
   useEffect(() => {
     if (open && step === PAY_STEP && !leadFired) {
+      setUserData({ name, phone });
       track("Lead", {
         content_name: PLAN.name,
         content_category: "course",

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
-import { track } from "@/lib/fbq";
+import { track, setUserData } from "@/lib/fbq";
 import Countdown from "@/components/Countdown";
 
 const FC = site.freeClass;
@@ -107,6 +107,7 @@ export default function FreeClassModal() {
     } catch {
       /* ignore — user still gets the WhatsApp step */
     }
+    setUserData({ name, phone, city });
     track("CompleteRegistration", {
       content_name: "Free Class",
       content_category: "free_class",
